@@ -1,5 +1,6 @@
 package dev.midnightcoder.midnightshift.users.service;
 
+import dev.midnightcoder.midnightshift.users.domain.User;
 import dev.midnightcoder.midnightshift.users.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -20,9 +21,12 @@ public class UserService {
     private final UserRepository userRepository;
 
     public String getUsernameById(Long id) {
-        var response = userRepository.findByUserId(id)
-            .orElseThrow(() -> new IllegalArgumentException("User not found"));
-
+        var response = getUserById(id);
         return response.getUsername();
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findByUserId(id)
+            .orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
 }

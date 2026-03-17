@@ -22,6 +22,6 @@ public class UserController {
     @GetMapping(value = "/{id}/username", produces = "text/plain")
     public String getUsernameById(@PathVariable Long id) {
         var username = userService.getUsernameById(id);
-        return "<span>@%s</span>".formatted(username);
+        return "<a href=\"/user/%s\">@%s</a>".formatted(id, username);
     }
 }

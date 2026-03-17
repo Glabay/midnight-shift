@@ -3,6 +3,7 @@ package dev.midnightcoder.midnightshift.comments.service;
 import dev.midnightcoder.midnightshift.comments.domain.Comment;
 import dev.midnightcoder.midnightshift.comments.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,8 @@ import java.util.List;
 public class CommentService {
     private final CommentRepository commentRepository;
 
-    public List<Comment> getCommentsByPostId(Long postId) {
-        return commentRepository.findByPostId(postId);
+    public List<Comment> getCommentsByPostId(Long postId, Integer pageId, Integer size) {
+        var pageable = Pageable.ofSize(size).withPage(pageId);
+        return commentRepository.findByPostId(postId, pageable);
     }
 }

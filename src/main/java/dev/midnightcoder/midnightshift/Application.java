@@ -1,5 +1,6 @@
 package dev.midnightcoder.midnightshift;
 
+import dev.midnightcoder.midnightshift.albums.service.AlbumImportService;
 import dev.midnightcoder.midnightshift.comments.service.CommentImportService;
 import dev.midnightcoder.midnightshift.posts.service.PostImportService;
 import dev.midnightcoder.midnightshift.users.service.UserImportService;
@@ -18,11 +19,13 @@ public class Application {
     @Bean
     CommandLineRunner commandLineRunner(PostImportService postImportService,
                                         CommentImportService commentImportService,
-                                        UserImportService userImportService) {
+                                        UserImportService userImportService,
+                                        AlbumImportService albumImportService) {
         return args -> {
             postImportService.importPosts();
             commentImportService.importComments();
             userImportService.importUsers();
+            albumImportService.importAlbums();
         };
     }
 }
