@@ -2,6 +2,8 @@ package dev.midnightcoder.midnightshift.albums.controller;
 
 import dev.midnightcoder.midnightshift.albums.domain.Album;
 import dev.midnightcoder.midnightshift.albums.service.AlbumService;
+import dev.midnightcoder.midnightshift.photos.domain.Photo;
+import dev.midnightcoder.midnightshift.photos.service.PhotoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,7 @@ import java.util.List;
 @RequestMapping("/api/v1/albums")
 public class AlbumController {
     private final AlbumService albumService;
+    private final PhotoService photoService;
 
     @GetMapping("/{userId}")
     public List<Album> getAllAlbumsForUser(@PathVariable Long userId,
@@ -33,6 +36,19 @@ public class AlbumController {
                                                required = false,
                                                defaultValue = "5"
                                            ) Integer size) {
-        return albumService.gteAllAlbumsForUser(userId, page, size);
+        return albumService.getAllAlbumsForUser(userId, page, size);
+    }
+
+    @GetMapping("/{albumId}/photos")
+    public List<Photo> getAllPhotosForAlbum(@PathVariable Long albumId,
+                                            @RequestParam(
+                                               required = false,
+                                               defaultValue = "0"
+                                           ) Integer page,
+                                            @RequestParam(
+                                               required = false,
+                                               defaultValue = "5"
+                                           ) Integer size) {
+        return photoService.getAllPhotosForAlbum(albumId, page, size);
     }
 }

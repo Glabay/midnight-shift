@@ -19,8 +19,14 @@ import java.util.List;
 public class AlbumService {
     private final AlbumRepository albumRepository;
 
-    public List<Album> gteAllAlbumsForUser(Long userId, Integer page, Integer size) {
+    public List<Album> getAllAlbumsForUser(Long userId, Integer page, Integer size) {
         var pageable = Pageable.ofSize(size).withPage(page);
         return albumRepository.findByUserId(userId, pageable);
+    }
+
+    public Album getAlbumById(Long albumId) {
+        return albumRepository.findById(albumId)
+            .orElseThrow(() ->
+                new IllegalArgumentException("Album not found with id: " + albumId));
     }
 }

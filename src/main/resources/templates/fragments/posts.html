@@ -30,7 +30,7 @@
 
         <div class="load-more-container"
              id="load-more-comments-container">
-            <button id="load-more-comments-btn"
+            <button id="load-more-btn"
                     th:attr="hx-get=@{/api/v1/comments/posts/{id}(id=${post.getId()})},
                                          hx-target='#comment-section-' + ${post.getId()}"
                     hx-vals='{"page":1}'

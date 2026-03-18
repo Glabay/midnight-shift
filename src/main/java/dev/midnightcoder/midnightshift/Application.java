@@ -2,6 +2,7 @@ package dev.midnightcoder.midnightshift;
 
 import dev.midnightcoder.midnightshift.albums.service.AlbumImportService;
 import dev.midnightcoder.midnightshift.comments.service.CommentImportService;
+import dev.midnightcoder.midnightshift.photos.service.PhotoImportService;
 import dev.midnightcoder.midnightshift.posts.service.PostImportService;
 import dev.midnightcoder.midnightshift.users.service.UserImportService;
 import org.springframework.boot.CommandLineRunner;
@@ -20,12 +21,14 @@ public class Application {
     CommandLineRunner commandLineRunner(PostImportService postImportService,
                                         CommentImportService commentImportService,
                                         UserImportService userImportService,
-                                        AlbumImportService albumImportService) {
+                                        AlbumImportService albumImportService,
+                                        PhotoImportService photoImportService) {
         return args -> {
             postImportService.importPosts();
             commentImportService.importComments();
             userImportService.importUsers();
             albumImportService.importAlbums();
+            photoImportService.importPhotos();
         };
     }
 }

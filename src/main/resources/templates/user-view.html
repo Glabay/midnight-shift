@@ -32,11 +32,12 @@
                     <h3>Albums</h3>
                     <p th:if="${#lists.isEmpty(albums)}">This user has no albums yet.</p>
                     <div th:if="${not #lists.isEmpty(albums)}" class="albums-list">
-                        <a th:each="album : ${albums}"
-                            th:text="${album.getTitle()}"
-                            th:href="@{/albums/{id}(id=${album.getId()})}">
-                            Album Title
-                        </a>
+                        <ul th:each="album : ${albums}">
+                            <li>
+                                <a th:text="${album.getTitle()}"
+                                   th:href="@{/album/{id}/photos(id=${album.getId()})}"/>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -67,7 +68,7 @@
                      class="load-more-container"
                      id="load-more-comments-container">
 
-                    <button id="load-more-comments-btn"
+                    <button id="load-more-btn"
                             th:attr="hx-get=@{/api/v1/comments/posts/{id}(id=${post.getId()})},
                                      hx-target='#comment-section-' + ${post.getId()}"
                             hx-vals='{"page":1}'

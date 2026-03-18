@@ -33,6 +33,12 @@ body {
     padding: 0 20px;
 }
 
+.photo-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
 .load-more-container {
     display: flex;
     justify-content: center;
@@ -40,14 +46,15 @@ body {
     margin-bottom: 1rem;
 }
 
-#load-more-comments-btn {
+#load-more-btn {
     padding: 0.6rem 2rem;
     font-size: 0.9rem;
     border-color: rgba(168, 85, 247, 0.4);
-    color: rgba(255, 255, 255, 0.8);
+    background: rgba(168, 85, 247, 0.8);
+    color: white;
 }
 
-#load-more-comments-btn:hover {
+#load-more-btn:hover {
     background: rgba(168, 85, 247, 0.1);
     border-color: var(--aurora-violet);
     color: white;
